@@ -1,39 +1,98 @@
-.parentPackage{
+.parentPackage {
     display: flex;
-    justify-content: flex-end;
-    margin-right: 397px;
+    justify-content: center;
+    padding: 1rem;
 }
-.newPackage{
+
+.newPackage {
+    position: relative;
     border: 1px solid black;
     border-radius: 20px;
-    width: 16%;
+    width: 90%;
+    max-width: 400px;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
     background-color: #F5F5DC;
-    position: absolute;
-    z-index: 1;
+    padding: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.newPackage>div>p{
-    padding: 0px;
+.newPackage > div {
+    width: 100%;
+    margin: 0.5rem 0;
+}
+
+.newPackage > div > p {
+    padding: 0.5rem;
     display: flex;
     flex-direction: column;
     font-weight: 600;
+    margin: 0.5rem 0;
 }
 
-.submit-package{
-    margin-bottom: 20px;
-    height: 29px;
-    width: 76px;
+.newPackage > div > p > input {
+    margin-top: 0.5rem;
+    padding: 0.5rem;
+    border-radius: 10px;
+    border: 1px solid black;
+}
+
+.submit-package {
+    margin: 1rem 0;
+    padding: 0.75rem 1.5rem;
+    min-width: 120px;
     border-radius: 12px;
     background-color: rgb(204, 87, 87);
     color: black;
-    border: 0.5px solid black;
+    border: 1px solid black;
+    transition: all 0.3s ease;
 }
-.submit-package:hover{
+
+.submit-package:hover {
     cursor: pointer;
-    background-color:rgb(73, 39, 39); ;
+    background-color: rgb(73, 39, 39);
     color: rgb(156, 99, 99);
+}
+
+.close-btn {
+    width: fit-content;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+}
+
+/* Media Queries */
+@media screen and (max-width: 768px) {
+    .newPackage {
+        width: 95%;
+        padding: 1rem;
+    }
+    
+    .submit-package {
+        min-width: 100px;
+        padding: 0.5rem 1rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .parentPackage {
+        padding: 0.5rem;
+    }
+
+    .newPackage {
+        padding: 1rem;
+    }
+
+    .newPackage > div > p {
+        font-size: 0.9rem;
+        padding: 0.25rem;
+    }
+
+    .submit-package {
+        margin: 0.75rem 0;
+        padding: 0.5rem 1rem;
+        min-width: 90px;
+    }
 }

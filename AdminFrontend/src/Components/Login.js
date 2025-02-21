@@ -9,18 +9,25 @@ export default function Login() {
     userName: "",
     password: "",
   });
+  const [loading, setLoading] = useState(false);
   const handleSubmit = (event) => {
     event.preventDefault();
+    setLoading(true);
     Axios.post("https://egs-delhicombatadmin.onrender.com/api/login", values)
       .then((res) => {
         console.log("dashboard");
         if (res.data === "Success") {
           navigate("/dashboard");
+          setLoading(false);
         } else {
           alert("No record found  ");
+          setLoading(false);
         }
       })
-      .catch((err) => console.log(err));
+      .catch((err) =>{ 
+        console.log(err)
+        setLoading(false);
+      });
   };
   const handleInputs = (event) => {
     setValues((prev) => ({
@@ -28,6 +35,13 @@ export default function Login() {
       [event.target.name]: [event.target.value],
     }));
   };
+
+  if (loading) return (
+    <div className="spinner-container">
+      <div className="spinner"></div>
+    </div>
+  );
+  
   return (
     <div className="login">
       <div className="login-container">

@@ -1,67 +1,137 @@
-.login{
-    height: 100vh;
-    background-color: #f8f8f8;
-    display: grid;
-    place-items: center;
+.login {
+  height: 100vh;
+  background-color: #f8f8f8;
+  display: grid;
+  place-items: center;
 }
 
-.login-container{
-    padding: 100px;
-    text-align: center;
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+.login-container {
+  padding: 100px;
+  margin: 0 6px;
+  text-align: center;
+  background-color: rgb(231, 231, 231);
+  border-radius: 10px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
-.input-field{
-    display: block;
-    border-radius:10px ;
-    border: 1px solid black;
-    height: 20px;
-    
+.input-field {
+  display: block;
+  border-radius: 10px;
+  border: 1px solid black;
+  height: 20px;
+  min-width: 280px;
+  padding: 10px 0;
 }
-.login-container>input{
-    text-align: center;
+.login-container > input {
+  text-align: center;
+}
+#userName {
+  margin-top: 50px;
+  width: 20vw;
+}
+#password {
+  margin-top: 20px;
+  width: 20vw;
+}
+.login-container > img {
+  object-fit: contain;
+  height: 100px;
+  margin-bottom: 40px;
+}
+.login-container > h2 {
+  color: #5a72a0;
+}
+.submitButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  border: 1px solid black;
+  text-decoration: none;
+  margin-top: 20px;
+  height: 25px;
+  width: 90px;
+  text-transform: inherit !important;
+  background-color: #0a8d48;
+  color: white;
+  transition: all 0.3s ease;
+}
 
-}
-#userName{
-    margin: 3px 0px;
-    margin-top: 50px;
-    width: 20vw;
-}
-#password{
-    margin-top: 20px ;
-    width: 20vw;
-}
-.login-container>img{
-    object-fit: contain;
-    height: 100px;
-    margin-bottom: 40px;
-}
-.login-container>h2{
-    color: #5A72A0;
-}
-.submitButton{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 10px;
-    border: 1px solid black;
-    margin-top: 50px;
-    margin-left: 111px;
-    text-decoration: none;
-    height: 25px;
-    width: 90px;
-    text-transform: inherit !important;
-    background-color: #0a8d48 ;
-    color: white;
+.submitButton:hover {
+  background-color: #03381c;
 }
 
-.login-container>Link:hover{
-    background-color: #03381c;
-    cursor: pointer;
-    
+.errorText {
+  color: red;
+  margin: 0.5rem 0;
+  font-size: 0.875rem;
 }
-.errorText{
-    color: red;
 
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: rgba(255, 255, 255, 0.8);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 5px solid #f3f3f3;
+  border-top: 5px solid #0a8d48;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .spinner {
+    width: 40px;
+    height: 40px;
+    border-width: 4px;
+  }
+}
+
+/* Media Queries */
+@media screen and (max-width: 480px) {
+  .login-container {
+    padding: 1.5rem;
+  }
+
+  .login-container > img {
+    height: 60px;
+  }
+
+  .input-field {
+    height: 2rem;
+  }
+
+  .submitButton {
+    width: 100px;
+    height: 2rem;
+  }
+}
+
+@media screen and (min-width: 481px) and (max-width: 768px) {
+  .login-container {
+    padding: 1.75rem;
+  }
 }

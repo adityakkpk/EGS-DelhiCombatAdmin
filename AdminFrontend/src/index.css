@@ -11,3 +11,29 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* Small devices (phones) */
+@media screen and (max-width: 576px) {
+  .container {
+    padding: 10px;
+  }
+  .table-responsive {
+    overflow-x: auto;
+  }
+}
+
+/* Medium devices (tablets) */
+@media screen and (min-width: 577px) and (max-width: 768px) {
+  .container {
+    padding: 15px;
+  }
+}
+
+/* Large devices (desktops) */
+@media screen and (min-width: 769px) {
+  .container {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+}

@@ -1,32 +1,19 @@
 .superParent{
-    width: 100%;
     display: flex;
     justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 1rem;
 }
 .parent-packages{
-    margin-top: 10px;
-    position: absolute;
-    z-index: 4;
-    background-color: white;
-    border: 1px solid black;
-    border-radius: 30px;
-    width: 30%;
-}
-.box-packages{
-    height: 350px;
+    position: relative;
+    padding-top: 20px;
 }
 
 .close{
-    justify-content: flex-end;
-    display: flex;
-}
-.close>div{
+    width: fit-content;
     position: absolute;
-    z-index: 5;
-    margin-right: 20px;
-    margin-top: 10px;
-
-}
-.close>div:hover{
-    cursor: pointer;
+    top: 1rem;
+    left: 1rem;
+    z-index: 100;
 }

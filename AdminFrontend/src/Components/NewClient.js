@@ -5,7 +5,9 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import { Link, useNavigate } from "react-router-dom";
 import Axios from "axios";
-export default function NewClient() {
+import LoadingSpinner from "./LoadingSpinner";
+
+export default function NewClient({ setNewClientClicked }) {
   const [memeberShipType, setMemberType] = useState({});
   const handleChange = (event) => {
     setMemberType(event.target.value);
@@ -16,6 +18,8 @@ export default function NewClient() {
     setPackageType(event.target.value);
   };
   const navigate = useNavigate();
+
+  const [loading, setLoading] = useState(false);
 
   const [fName, setFName] = useState("");
   const [lName, setLName] = useState("");
@@ -42,19 +46,23 @@ export default function NewClient() {
       .catch((err) => console.log(err));
   };
   const renewMemberShip = () => {
-    Axios.post("https://egs-delhicombatadmin.onrender.com/api/renewMemberShip", {
-      fName,
-      mobile,
-      packageType,
-      memeberShipType,
-      subscripSta,
-    })
+    Axios.post(
+      "https://egs-delhicombatadmin.onrender.com/api/renewMemberShip",
+      {
+        fName,
+        mobile,
+        packageType,
+        memeberShipType,
+        subscripSta,
+      }
+    )
       .then((res) => {
         console.log("Success");
       })
       .catch((err) => console.log(err));
   };
   const handleSubmitNew = () => {
+    setLoading(true);
     Axios.post("https://egs-delhicombatadmin.onrender.com/api/newClient", {
       fName,
       lName,
@@ -74,16 +82,34 @@ export default function NewClient() {
       .then((res) => {
         renewMemberShip();
         if (res.data === "Success") {
+          setLoading(false);
           navigate("/dashboard");
         } else {
+          setLoading(false);
           alert("No record found  ");
         }
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+        setLoading(false);
+      });
   };
+
+  if (loading) return <LoadingSpinner />;
   return (
     <div className="parent">
       <div className="card">
+        <a className="close" onClick={() => setNewClientClicked(false)}>
+          <svg
+            className="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+            focusable="false"
+            aria-hidden="true"
+            viewBox="0 0 24 24"
+            data-testid="CloseIcon"
+          >
+            <path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path>
+          </svg>
+        </a>
         <div>
           <p>
             Enter First Name
@@ -138,6 +164,23 @@ export default function NewClient() {
               className="inputFields"
               onChange={(e) => setEmail(e.target.value)}
             />
+          </p>
+        </div>
+        <div className="memberTypeParent">
+          <p className="memberTP">
+            Enter the membership type
+            <FormControl className="memberType">
+              <Select
+                labelId="demo-simple-select-label"
+                id=""
+                value={memeberShipType}
+                label="Member Ship Type"
+                onChange={handleChange}
+              >
+                <MenuItem value={"GS"}>Group Session</MenuItem>
+                <MenuItem value={"PT"}>Personal Training</MenuItem>
+              </Select>
+            </FormControl>
           </p>
         </div>
         <div className="memberTypeParent">
@@ -217,23 +260,6 @@ export default function NewClient() {
             />
           </p>
         </div> */}
-        <div className="memberTypeParent">
-          <p className="memberTP">
-            Enter the membership type
-            <FormControl className="memberType">
-              <Select
-                labelId="demo-simple-select-label"
-                id=""
-                value={memeberShipType}
-                label="Member Ship Type"
-                onChange={handleChange}
-              >
-                <MenuItem value={"GS"}>Group Session</MenuItem>
-                <MenuItem value={"PT"}>Personal Training</MenuItem>
-              </Select>
-            </FormControl>
-          </p>
-        </div>
         <div>
           <p>
             Enter the Batch Time
