@@ -1,4 +1,5 @@
 const express = require("express");
+const path = require("path");
 const bodyParser = require("body-parser");
 const pool = require("./config/db.js");
 const cors = require("cors");
@@ -11,9 +12,13 @@ app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
 
-app.get("/", (req, res) => {
-  res.send("Hello");
-});
+const dirname = path.resolve();
+
+app.use(express.static(path.join(dirname, "/AdminFrontend/build")));
+
+// app.get("/", (req, res) => {
+//   res.send("Hello");
+// });
 
 app.post("/login", (req, res) => {
   pool.getConnection((err, conn) => {
@@ -270,3 +275,7 @@ app.get("/upcomingRenewalUser", (req, res) => {
 //     conn.query(sql,[pastDays],)
 //   })
 // })
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(dirname, "AdminFrontend", "build", "index.html"));
+});
