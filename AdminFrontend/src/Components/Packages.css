@@ -1,0 +1,32 @@
+.superParent{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.parent-packages{
+    margin-top: 10px;
+    position: absolute;
+    z-index: 4;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 30px;
+    width: 30%;
+}
+.box-packages{
+    height: 350px;
+}
+
+.close{
+    justify-content: flex-end;
+    display: flex;
+}
+.close>div{
+    position: absolute;
+    z-index: 5;
+    margin-right: 20px;
+    margin-top: 10px;
+
+}
+.close>div:hover{
+    cursor: pointer;
+}

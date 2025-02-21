@@ -1,0 +1,39 @@
+.parentPackage{
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 397px;
+}
+.newPackage{
+    border: 1px solid black;
+    border-radius: 20px;
+    width: 16%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: #F5F5DC;
+    position: absolute;
+    z-index: 1;
+}
+
+.newPackage>div>p{
+    padding: 0px;
+    display: flex;
+    flex-direction: column;
+    font-weight: 600;
+}
+
+.submit-package{
+    margin-bottom: 20px;
+    height: 29px;
+    width: 76px;
+    border-radius: 12px;
+    background-color: rgb(204, 87, 87);
+    color: black;
+    border: 0.5px solid black;
+}
+.submit-package:hover{
+    cursor: pointer;
+    background-color:rgb(73, 39, 39); ;
+    color: rgb(156, 99, 99);
+}

@@ -1,0 +1,67 @@
+.header{
+    border: 1px solid black;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #019087;
+    color: black;
+    
+}
+.logo>img{
+    height: 60px;
+    width: 80px;
+    padding-left: 20px;
+
+}
+.logo>img:hover{
+    cursor: pointer;
+}
+.logo{
+    padding-left: 70px;
+}
+.wel{
+    padding-left: 90px;
+}
+.logo{
+    margin-left:30px ;
+}
+.btn>button:hover{
+    cursor: pointer;
+    background-color: #803D3B;
+    color:white;
+}
+.btn>button{
+    background-color: blue;
+    border: 1px solid black;
+    border-radius: 15px;
+    width: 90px;
+    height: 45px;
+    color: white;
+}
+.add-Op{
+    padding-left: 50px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+.btn{
+    padding: 0px 10px;
+    
+}
+.input-Field{
+    padding-left:  10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+.input-Field:hover{
+    cursor: pointer;
+}
+#search-bar{
+    height: 30px;
+    text-align: center;
+    border-radius: 20px;
+    border: 1px solid black;
+}

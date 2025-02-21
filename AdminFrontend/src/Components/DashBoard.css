@@ -1,0 +1,77 @@
+.dashBoard{
+    /* display: flex;
+    align-items: center;
+    justify-content: center; */
+    height: 70vh;
+    height: 100%;
+}
+.dashBoard>div>DataGrid>column{
+    background-color: black;
+}
+.css-yrdy0g-MuiDataGrid-columnHeaderRow {
+    color:black ;
+}
+.dashBoard>table{
+    font-size: 20px;
+    border: 2px solid black;
+    width: 100vw;
+    height: 100%;
+    text-align: center;
+    color: #9290C3;
+    
+}
+th{
+    border-bottom: 1px solid black;
+    background-color: #070F2B;
+
+}
+td{
+    background-color: #1B1A55;
+}
+
+.hamburgerIcon:hover{
+    cursor: pointer;
+}
+
+.moreOptions{
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.low-opacity{
+    opacity: 0.6;
+}
+.close-history{
+    position: absolute;
+    z-index: 7;
+}
+.close-history>svg {
+
+    position: absolute;
+    padding-left: 1000px;
+    padding-top: 21px;
+    color: black;
+    z-index: 8;
+}
+
+.close-history>svg:hover{
+    cursor: pointer;
+}
+
+.close-renew>div{
+    position: absolute;
+
+}
+.close-renew>div>svg{
+    position: absolute;
+    padding-left: 930px;
+    padding-top: 120px;
+    z-index: 8;
+}
+
+.close-renew>div>svg:hover{
+    cursor: pointer;
+}
