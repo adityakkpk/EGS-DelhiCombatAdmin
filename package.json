@@ -5,8 +5,8 @@
   "main": "server.js",
   "type": "commonjs",
   "scripts": {
-    "start": "node backend/server.js",
-    "dev": "nodemon backend/server.js",
+    "start": "node Backend/server.js",
+    "dev": "nodemon Backend/server.js",
     "build": "npm install && npm install --prefix AdminFrontend && npm run build --prefix AdminFrontend"
   },
   "author": "",
