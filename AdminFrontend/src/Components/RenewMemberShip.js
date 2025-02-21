@@ -17,7 +17,7 @@ export default function RenewMemberShip({ id }) {
   const [packages, setPackages] = useState();
   const getPackages = () => {
     axios
-      .get("http://localhost:8081/getPackage")
+      .get("https://egs-delhicombatadmin.onrender.com/api/getPackage")
       .then((res) => {
         setPackages(res.data);
         console.log(res.data);
@@ -26,7 +26,7 @@ export default function RenewMemberShip({ id }) {
   };
   const historyPostRequest = () => {
     axios
-      .post("http://localhost:8081/historyPost/" + id, {
+      .post("https://egs-delhicombatadmin.onrender.com/api/historyPost/" + id, {
         packageType,
         subscripSta,
       })
@@ -46,7 +46,7 @@ export default function RenewMemberShip({ id }) {
       typeof packageType
     );
     axios
-      .put("http://localhost:8081/renew/" + id, {
+      .put("https://egs-delhicombatadmin.onrender.com/api/renew/" + id, {
         amountRecieved,
         transacDate,
         transacNum,

@@ -7,7 +7,7 @@ export default function NewPackage() {
   const [packagePrice, setPackagePrice] = useState();
   const handleSubmitPackage = () => {
     axios
-      .post("http://localhost:8081/newPackage", {
+      .post("https://egs-delhicombatadmin.onrender.com/api/newPackage", {
         packageDuration,
         packageType,
         packagePrice,

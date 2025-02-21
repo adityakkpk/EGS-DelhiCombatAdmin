@@ -94,7 +94,7 @@ import NewClient from "./Components/NewClient";
 body{
     
 }// const corsOption = {
-//   origin: ["http://localhost:8081"],
+//   origin: ["https://egs-delhicombatadmin.onrender.com/"],
 //   credentials: true,
 //   methods: ["GET", "POST", "PUT", "DELETE"],
 // };

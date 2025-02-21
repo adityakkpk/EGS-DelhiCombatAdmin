@@ -31,7 +31,7 @@ export default function DashBoard({ searchedData }) {
   const [searchData, setSearchData] = useState();
   const fetchSearchedData = () => {
     axios
-      .get("http://localhost:8081/searchData/" + searchedData)
+      .get("https://egs-delhicombatadmin.onrender.com/api/searchData/" + searchedData)
       .then((resp) => {
         setSearchData(resp.data);
         console.log(resp.data);
@@ -40,7 +40,7 @@ export default function DashBoard({ searchedData }) {
   };
   // const updateRemainingDays = () => {
   //   axios
-  //     .put("http://localhost:8081/updateRemainingDays")
+  //     .put("https://egs-delhicombatadmin.onrender.com/api/updateRemainingDays")
   //     .then((resp) => {
   //       console.log("Remaing Days Updated");
   //     })
@@ -51,7 +51,7 @@ export default function DashBoard({ searchedData }) {
     fetchSearchedData();
     // updateRemainingDays();
     axios
-      .get("http://localhost:8081/dashboard")
+      .get("https://egs-delhicombatadmin.onrender.com/api/dashboard")
       .then((resp) => {
         setUser(resp.data);
       })
@@ -116,7 +116,7 @@ export default function DashBoard({ searchedData }) {
       setUser(user.filter((row) => row.id !== id));
       try {
         axios
-          .delete("http://localhost:8081/delete/" + id)
+          .delete("https://egs-delhicombatadmin.onrender.com/api/delete/" + id)
           .then((res) => {
             alert("Successfully Deleted");
             // window.location.reload();

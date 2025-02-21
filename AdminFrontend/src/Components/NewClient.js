@@ -34,7 +34,7 @@ export default function NewClient() {
   }, []);
   const [packages, setPackages] = useState();
   const getPackageType = () => {
-    Axios.get("http://localhost:8081/getPackage")
+    Axios.get("https://egs-delhicombatadmin.onrender.com/api/getPackage")
       .then((res) => {
         setPackages(res.data);
         console.log(res.data);
@@ -42,7 +42,7 @@ export default function NewClient() {
       .catch((err) => console.log(err));
   };
   const renewMemberShip = () => {
-    Axios.post("http://localhost:8081/renewMemberShip", {
+    Axios.post("https://egs-delhicombatadmin.onrender.com/api/renewMemberShip", {
       fName,
       mobile,
       packageType,
@@ -55,7 +55,7 @@ export default function NewClient() {
       .catch((err) => console.log(err));
   };
   const handleSubmitNew = () => {
-    Axios.post("http://localhost:8081/newClient", {
+    Axios.post("https://egs-delhicombatadmin.onrender.com/api/newClient", {
       fName,
       lName,
       address,

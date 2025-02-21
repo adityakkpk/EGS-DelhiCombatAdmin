@@ -17,7 +17,7 @@ export default function Header() {
   const upcomingRenewal = () => {
     setUpcomingRenewalClicked(!upcomingRenewalClicked);
     axios
-      .get("http://localhost:8081/upcomingRenewalUser")
+      .get("https://egs-delhicombatadmin.onrender.com/api/upcomingRenewalUser")
       .then((res) => {
         setUpcomingRenewalUser(res.data);
         console.log(res.data);
@@ -29,7 +29,7 @@ export default function Header() {
       setPackages(packages.filter((row) => row.id !== id));
       try {
         axios
-          .delete("http://localhost:8081/deletePackage/" + id)
+          .delete("https://egs-delhicombatadmin.onrender.com/api/deletePackage/" + id)
           .then((res) => {
             alert("Successfully Deleted");
           })
@@ -55,7 +55,7 @@ export default function Header() {
   const viewPackageCl = () => {
     setViewPackage(!viewPackage);
     axios
-      .get("http://localhost:8081/packages")
+      .get("https://egs-delhicombatadmin.onrender.com/api/packages")
       .then((res) => {
         setPackages(res.data);
       })

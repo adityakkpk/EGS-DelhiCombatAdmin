@@ -11,7 +11,7 @@ export default function Login() {
   });
   const handleSubmit = (event) => {
     event.preventDefault();
-    Axios.post("http://localhost:8081/login", values)
+    Axios.post("https://egs-delhicombatadmin.onrender.com/api/login", values)
       .then((res) => {
         console.log("dashboard");
         if (res.data === "Success") {

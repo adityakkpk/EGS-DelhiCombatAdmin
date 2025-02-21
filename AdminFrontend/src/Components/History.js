@@ -11,7 +11,7 @@ export default function History({ id }) {
   const [history, setHistory] = useState({});
   const fetchData = () => {
     axios
-      .post("http://localhost:8081/history/" + id)
+      .post("https://egs-delhicombatadmin.onrender.com/api/history/" + id)
       .then((resp) => {
         setHistory(resp.data);
       })
