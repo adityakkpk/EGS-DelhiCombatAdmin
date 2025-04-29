@@ -1,37 +1,37 @@
 import React, { useState } from "react";
-import "./Header.css";
 import Logo from "./Logo.jpg";
-import SearchIcon from "@mui/icons-material/Search";
+import { SearchIcon, PlusIcon, PackageIcon, CalendarIcon, XMarkIcon, TrashIcon } from "@heroicons/react/24/outline";
 import NewPackage from "./NewPackage";
 import NewClient from "./NewClient";
 import DashBoard from "./DashBoard";
-import "./Packages.css";
-import { DataGrid, GridActionsCellItem } from "@mui/x-data-grid";
-import CloseIcon from "@mui/icons-material/Close";
 import axios from "axios";
-import { Delete } from "@mui/icons-material";
+import { motion, AnimatePresence } from "framer-motion";
+
 export default function Header() {
   const [packages, setPackages] = useState();
   const [upcomingRenewalClicked, setUpcomingRenewalClicked] = useState(false);
   const [upcomingRenewalUser, setUpcomingRenewalUser] = useState();
+  const [searchData, setSearchData] = useState(null);
+  const [newPackageClicked, setNewPackageClicked] = useState(false);
+  const [newClientClicked, setNewClientClicked] = useState(false);
+  const [viewPackage, setViewPackage] = useState(false);
+
   const upcomingRenewal = () => {
     setUpcomingRenewalClicked(!upcomingRenewalClicked);
     axios
       .get("https://egs-delhicombatadmin.onrender.com/api/upcomingRenewalUser")
       .then((res) => {
         setUpcomingRenewalUser(res.data);
-        console.log(res.data);
       })
       .catch((err) => console.log(err));
   };
+
   const handleDeleteClickPackage = (id) => {
     if (window.confirm("Are you sure want to delete")) {
       setPackages(packages.filter((row) => row.id !== id));
       try {
         axios
-          .delete(
-            "https://egs-delhicombatadmin.onrender.com/api/deletePackage/" + id
-          )
+          .delete("https://egs-delhicombatadmin.onrender.com/api/deletePackage/" + id)
           .then((res) => {
             alert("Successfully Deleted");
           })
@@ -41,19 +41,19 @@ export default function Header() {
       }
     }
   };
-  const [searchData, setSearchData] = useState(null);
+
   const handleSearchSubmit = () => {
     window.location.reload();
   };
-  const [newPackageClicked, setNewPackageClicked] = useState(false);
+
   const newPackageCli = () => {
     setNewPackageClicked(!newPackageClicked);
   };
-  const [newClientClicked, setNewClientClicked] = useState(false);
+
   const newClientCli = () => {
     setNewClientClicked(!newClientClicked);
   };
-  const [viewPackage, setViewPackage] = useState(false);
+
   const viewPackageCl = () => {
     setViewPackage(!viewPackage);
     axios
@@ -63,186 +63,136 @@ export default function Header() {
       })
       .catch((err) => console.log(err));
   };
-  const columns2 = [
-    {
-      field: "id",
-      headerName: "Gym Id.",
-      width: 70,
-      renderCell: (cellValue) => {
-        return <p>DC00{cellValue.value}</p>;
-      },
-    },
-    {
-      field: "firstName",
-      headerName: "Name",
-      width: 100,
-    },
-    {
-      field: "packageType",
-      headerName: "Package Type",
-      width: 120,
-    },
-    {
-      field: "subscipSta",
-      headerName: "Start Date",
-      width: 100,
-    },
-    {
-      field: "leftDays",
-      headerName: "Left Days",
-      width: 80,
-    },
-  ];
 
-  const columns = [
-    {
-      field: "id",
-      headerName: "S. No.",
-      width: 70,
-    },
-    {
-      field: "type",
-      headerName: "Package Type",
-      width: 120,
-    },
-    {
-      field: "duration",
-      headerName: "Duration",
-      width: 100,
-    },
-    {
-      field: "price",
-      headerName: "Price",
-      width: 80,
-    },
-    {
-      field: "actions",
-      type: "actions",
-      headerName: "Delete",
-      width: 80,
-      cellClassName: "actions",
-      getActions: ({ id }) => {
-        return [
-          <GridActionsCellItem
-            icon={<Delete />}
-            label="Delete"
-            onClick={() => handleDeleteClickPackage(id)}
-            color="inherit"
-          />,
-        ];
-      },
-    },
-  ];
-  const row = [
-    {
-      id: 1,
-      type: "Bronze",
-      duration: "1 Months",
-      price: 3500,
-    },
-    {
-      id: 2,
-      type: "Silver",
-      duration: "3 Months",
-      price: 8000,
-    },
-    {
-      id: 3,
-      type: "Gold",
-      duration: "6 Months",
-      price: 12000,
-    },
-    {
-      id: 4,
-      type: "Platinum",
-      duration: "12 Months",
-      price: 20000,
-    },
-  ];
   return (
-    <div>
-      <div className="header">
-        <div className="logo">
-          <img src={Logo} alt="DC" onClick={() => setNewClientClicked(false)} />
-        </div>
-        <div className="wel">
-          <h1>Welcome to DashBoard</h1>
-        </div>
-        <div className="add-Op">
-          <div className="btn">
-            <button onClick={newClientCli}>Add Client</button>
-          </div>
-          <div className="btn">
-            <button onClick={newPackageCli}> New Package</button>
-          </div>
-          <div className="btn">
-            <button onClick={() => viewPackageCl()}> View Package</button>
-          </div>
-          <div className="btn">
-            <button onClick={() => upcomingRenewal()}> Upcoming Renewal</button>
-          </div>
-          <div className="input-Field">
-            <input
-              type="text"
-              placeholder="Enter Name"
-              id="search-bar"
-              onChange={(val) => setSearchData(val.target.value)}
-            />
-            <SearchIcon onClick={() => handleSearchSubmit()} />
-          </div>
-        </div>
-      </div>
-      {viewPackage ? (
-        <div className="superParent">
-          <div className="parent-packages">
-            <a className="close" onClick={() => setViewPackage(false)}>
-              <svg
-                className="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
-                focusable="false"
-                aria-hidden="true"
-                viewBox="0 0 24 24"
-                data-testid="CloseIcon"
-              >
-                <path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path>
-              </svg>
-            </a>
-            <div className="box-packages">
-              <DataGrid rows={packages ? packages : row} columns={columns} />
+    <div className="min-h-screen bg-gray-50">
+      {/* Header */}
+      <header className="bg-white shadow-sm">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center py-4">
+            <div className="flex items-center">
+              <img src={Logo} alt="DC" className="h-12 w-auto" onClick={() => setNewClientClicked(false)} />
+              <h1 className="ml-4 text-2xl font-bold text-gray-900">Welcome to Dashboard</h1>
             </div>
-          </div>
-        </div>
-      ) : (
-        " "
-      )}
-      {upcomingRenewalClicked ? (
-        <div className="superParent">
-          <div className="parent-packages">
-            <div className="close">
-              <div onClick={() => setUpcomingRenewalClicked(false)}>
-                <CloseIcon />
+            
+            {/* Search Bar */}
+            <div className="flex items-center space-x-4">
+              <div className="relative">
+                <input
+                  type="text"
+                  placeholder="Search by name..."
+                  className="input-field pl-10 pr-4"
+                  onChange={(val) => setSearchData(val.target.value)}
+                />
+                <SearchIcon className="h-5 w-5 text-gray-400 absolute left-3 top-1/2 transform -translate-y-1/2" />
               </div>
             </div>
-            <div className="box-packages">
-              <DataGrid
-                rows={upcomingRenewalUser ? upcomingRenewalUser : row}
-                columns={columns2}
-              />
-            </div>
+          </div>
+
+          {/* Action Buttons */}
+          <div className="flex space-x-4 py-4">
+            <button
+              onClick={newClientCli}
+              className="btn-primary flex items-center space-x-2"
+            >
+              <PlusIcon className="h-5 w-5" />
+              <span>Add Client</span>
+            </button>
+            <button
+              onClick={newPackageCli}
+              className="btn-primary flex items-center space-x-2"
+            >
+              <PackageIcon className="h-5 w-5" />
+              <span>New Package</span>
+            </button>
+            <button
+              onClick={viewPackageCl}
+              className="btn-secondary flex items-center space-x-2"
+            >
+              <PackageIcon className="h-5 w-5" />
+              <span>View Packages</span>
+            </button>
+            <button
+              onClick={upcomingRenewal}
+              className="btn-secondary flex items-center space-x-2"
+            >
+              <CalendarIcon className="h-5 w-5" />
+              <span>Upcoming Renewal</span>
+            </button>
           </div>
         </div>
-      ) : (
-        " "
-      )}
-      {newPackageClicked ? (
-        <NewPackage setNewPackageClicked={setNewPackageClicked} />
-      ) : (
-        " "
-      )}
-      {newClientClicked ? (
-        <NewClient setNewClientClicked={setNewClientClicked} />
-      ) : (
-        <DashBoard searchedData={searchData} />
-      )}
+      </header>
+
+      {/* Modal Overlays */}
+      <AnimatePresence>
+        {viewPackage && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4"
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              className="bg-white rounded-xl shadow-xl max-w-4xl w-full p-6"
+            >
+              <div className="flex justify-between items-center mb-4">
+                <h2 className="text-2xl font-bold text-gray-900">Packages</h2>
+                <button
+                  onClick={() => setViewPackage(false)}
+                  className="text-gray-500 hover:text-gray-700"
+                >
+                  <XMarkIcon className="h-6 w-6" />
+                </button>
+              </div>
+              <div className="overflow-x-auto">
+                <table className="min-w-full divide-y divide-gray-200">
+                  <thead className="bg-gray-50">
+                    <tr>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">S. No.</th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Package Type</th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Duration</th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Price</th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody className="bg-white divide-y divide-gray-200">
+                    {packages?.map((pkg) => (
+                      <tr key={pkg.id}>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{pkg.id}</td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{pkg.type}</td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{pkg.duration}</td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{pkg.price}</td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                          <button
+                            onClick={() => handleDeleteClickPackage(pkg.id)}
+                            className="text-red-600 hover:text-red-800"
+                          >
+                            <TrashIcon className="h-5 w-5" />
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Main Content */}
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {newPackageClicked ? (
+          <NewPackage setNewPackageClicked={setNewPackageClicked} />
+        ) : newClientClicked ? (
+          <NewClient setNewClientClicked={setNewClientClicked} />
+        ) : (
+          <DashBoard searchedData={searchData} />
+        )}
+      </main>
     </div>
   );
 }
