@@ -102,7 +102,7 @@ export default function ModernNewClient({ setNewClientClicked }) {
       exit={{ opacity: 0, y: -20 }}
       className="fixed inset-0 bg-black bg-opacity-50 overflow-y-auto h-full w-full flex items-center justify-center p-4"
     >
-      <div className="bg-white rounded-xl shadow-lg p-6 w-full max-w-4xl mx-auto relative">
+      <div className="bg-white rounded-xl shadow-lg p-6 w-full max-w-4xl mx-auto relative top-[18rem] md:top-24">
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-2xl font-bold text-gray-900">Add New Client</h2>
           <button
